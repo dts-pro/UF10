@@ -140,7 +140,7 @@ Una vegada s'ha instanciat un objecte de tipus `File`, pot ser necessari recuper
 
 - **`String getAbsolutePath()`**: Retorna la ruta absoluta. Si l'objecte `File` es va inicialitzar usant una ruta relativa, el resultat inclou també la carpeta de treball.  
 
-![Ruta absoluta i relativa](uf10/Ruta_absoluta_relativa.jpg)
+![Ruta absoluta i relativa](/uf10/Ruta_absoluta_relativa.jpg)
 
 Vegem un exemple de com funcionen aquests tres mètodes. Observeu que les rutes relatives s'afegixen a la ruta de la carpeta de treball (on es troba el projecte):  
 
