@@ -14,22 +14,33 @@ Java no és cap excepció a l'hora d'oferir aquest tipus de biblioteca, en forma
 
 La peça més bàsica per a poder operar amb arxius, independentment del seu tipus, en un programa Java és la classe `File`. Aquesta classe pertany al paquet `java.io`, per tant, serà necessari importar-la abans de poder usar-la.  
 
+::: tabs
+== Java
+
 ```java
 import java.io.File;
-```  
+```
+
+:::
 
 Aquesta classe permet manipular qualsevol aspecte vinculat al sistema de fitxers. El seu nom ("arxiu", en anglés) és una mica enganyós, ja que no es refereix exactament a un arxiu.  
 
->[!IMPORTANT] <strong>ATENCIÓ!:</strong>
->La classe `File` representa una ruta dins del sistema d'arxius. 
+::: warning ATENCIÓ
+La classe `File` representa una ruta dins del sistema d'arxius.
+:::
 
 Serveix per a realitzar operacions tant sobre rutes al sistema d'arxius que ja existisquen com sobre rutes no existents. A més, es pot usar tant per a manipular arxius com directoris.  
 
 Com qualsevol altra classe, cal instanciar-la perquè siga possible invocar els seus mètodes. El constructor de `File` rep com a argument una cadena de text corresponent a la ruta sobre la qual es volen dur a terme les operacions.  
 
+::: tabs
+== Java
+
 ```java
 File f = new File(String ruta);
-```  
+```
+
+:::
 
 Una ruta és la forma general d'un nom d'arxiu o carpeta, per la qual cosa identifica únicament la seua localització en el sistema d'arxius.
 
@@ -46,17 +57,30 @@ A més, els diferents sistemes operatius usen separadors diferents dins de les r
 
 Per exemple, en Windows:
 
+::: tabs
+== Java
+
 ```java
 File f = new File("C:\\Users\\Documents\\fitxer.txt");
 ```
 
+:::
+
 No obstant això, Java permet utilitzar la barra (`/`) en Windows sense problemes, cosa que simplifica l'escriptura de rutes de fitxers de manera multiplataforma:
+
+::: tabs
+== Java
 
 ```java
 File f = new File("C:/Users/Documents/fitxer.txt");
 ```
 
+:::
+
 És important entendre que un objecte `File` representa una única ruta del sistema de fitxers. Per a operar amb diferents rutes caldrà crear i manipular diversos objectes. Per exemple, en el següent codi s’instancien tres objectes `File` diferents:
+
+::: tabs
+== Java
 
 ```java
 File carpetaFotos = new File("C:/Fotos");
@@ -64,12 +88,15 @@ File unaFoto = new File("C:/Fotos/Foto1.png");
 File altraFoto = new File("C:/Fotos/Foto2.png");
 ```
 
+:::
+
 ## 2.2. Rutes absolutes i relatives
 
 En els exemples emprats fins al moment per a crear objectes del tipus File s'han usat rutes absolutes, ja que és la manera de deixar més clar a quin element dins del sistema d'arxius, ja siga arxiu o carpeta, s'està fent referència.
 
->[!WARNING] <strong>ATENCIÓ!:</strong>
->Una **ruta absoluta** és aquella que **es refereix a un element a partir de l'arrel del sistema** de fitxers. Per exemple: **C:/Fotos/Foto1.png**
+::: warning **ATENCIÓ**
+Una **ruta absoluta** és aquella que **es refereix a un element a partir de l'arrel del sistema** de fitxers. Per exemple: **C:/Fotos/Foto1.png**
+:::
 
 Les **rutes absolutes** es distingeixen fàcilment, ja que el text que les representa comença d'una manera molt característica depenent del sistema operatiu de l'ordinador. En el cas dels sistemes operatius Windows al seu inici sempre es posa el nom de la unitat ( "**C:**", "**D:**", etc.), mentre que en el cas dels sistemes operatius Unix, aquestes comencen sempre per una barra ( "/"). Per exemple, les cadenes de text següents representen rutes absolutes en un sistema d'arxius de Windows:
 
@@ -91,8 +118,9 @@ Suposem que s'ha desenvolupat un programa que realitza operacions sobre el siste
 
 Per a resoldre aquest problema, a l'hora d'inicialitzar una variable de tipus `File`, també es pot fer referència a una ruta relativa.
 
->[!WARNING] <strong>ATENCIÓ!:</strong>
->Una **ruta relativa** és aquella que **no inclou l'arrel** i, per això, es considera que **parteix des del directori de treball** de l'aplicació. Aquesta carpeta pot ser diferent cada vegada que s'executa el programa.
+::: warning **ATENCIÓ**
+Una **ruta relativa** és aquella que **no inclou l'arrel** i, per això, es considera que **parteix des del directori de treball** de l'aplicació. Aquesta carpeta pot ser diferent cada vegada que s'executa el programa.
+:::
 
 **Quan un programa s'executa**, per defecte **se li assigna una carpeta de treball**. Aquesta carpeta **sol ser la carpeta des d'on es llança el programa**. En el cas d'un programa en Java executat a través d'un IDE (com NetBeans), la carpeta de treball sol ser la mateixa on s'han guardat els arxius del projecte.  
 
@@ -106,9 +134,14 @@ Una ruta relativa sempre inclou el directori de treball de l'aplicació com a pa
 
 Per exemple, l'element al qual es refereix el següent objecte `File` dependrà del directori de treball:
 
+::: tabs
+== Java
+
 ```java
 File f = new File("Unitat11/apartat1/Activitats.txt");
 ```
+
+:::
 
 Directori de treball | Ruta real
 --- | ---  
@@ -118,9 +151,14 @@ X:/Unitats | X:/Unitats/Unitat11/apartat1/Activitats.txt
 
 Aquest mecanisme facilita la portabilitat del programari entre diferents ordinadors i sistemes operatius, ja que només és necessari que els arxius i carpetes romanguen en la mateixa ruta relativa al directori de treball. Vegem-ho amb un exemple:  
 
+::: tabs
+== Java
+
 ```java
 File f = new File("Activitats.txt");
-```  
+```
+
+:::
 
 Donada aquesta ruta relativa, n'hi ha prou amb garantir que el fitxer `Activitats.txt` estiga sempre en el mateix directori de treball de l'aplicació, qualsevol que siga aquest, i independentment del sistema operatiu utilitzat (en un ordinador pot ser `C:\Programes` i en un altre `/Java`). En qualsevol d'aquests casos, la ruta sempre serà correcta.  
 
@@ -143,6 +181,12 @@ Una vegada s'ha instanciat un objecte de tipus `File`, pot ser necessari recuper
 ![Ruta absoluta i relativa](/uf10/Ruta_absoluta_relativa.jpg)
 
 Vegem un exemple de com funcionen aquests tres mètodes. Observeu que les rutes relatives s'afegixen a la ruta de la carpeta de treball (on es troba el projecte):  
+
+:::: tabs
+=== Java
+
+::: tabs
+== Codi
 
 ```java
 import java.io.File;
@@ -172,7 +216,7 @@ public class ProvaFitxers {
 }
 ```
 
-Aquest programa produeix l'eixida següent:
+== Eixida
 
 ```plaintext
 getParent() : /home/lionel
@@ -192,6 +236,9 @@ getName() : document.txt
 getAbsolutePath(): /home/lionel/NetBeans/Fitxers/treballs/document.txt
 ```
 
+:::
+::::
+
 ### 2.3.2. Comprovacions d'estat
 
 Donada la ruta emprada per a inicialitzar una variable de tipus File, aquesta pot ser que realment existisca dins del sistema de fitxers o no, ja siga en forma d'arxiu o carpeta. La classe File ofereix un conjunt de mètodes que permeten fer comprovacions sobre el seu estat i saber si és així.
@@ -205,6 +252,9 @@ Normalment, els arxius incorporen en el seu nom una extensió (.txt, .jpg, .mp4,
 - **boolean isDirectory()** funciona com l'anterior però comprova si és una carpeta.
 
 Per exemple, el següent codi fa una sèrie de comprovacions sobre un conjunt de rutes. Per a poder provar-ho pots crear la carpeta "Temp" en l'arrel "C:". Dins, un arxiu anomenat "Document.txt" (pot estar buit) i una carpeta anomenada “Fotos”. Després de provar el programa pots eliminar algun element i tornar a provar per a veure la diferència.
+
+::: tabs
+== Java
 
 ```java
 public static void main(String[] args) {
@@ -223,15 +273,23 @@ public static void mostrarEstat(File f) {
 }
 ```
 
+:::
+
 ### 2.3.3. Propietats de fitxers
 
-El sistema de fitxers d'un sistema operatiu emmagatzema diversitat d'informació sobre els arxius i carpetes que pot resultar útil conéixer: els seus atributs d'accés, la seua grandària, la data de modificació, etc. En general, totes les dades mostrades a accedir a les propietats de l'arxiu. Aquesta informació també pot ser consultada usant els mètodes adequats. Entre els més populars hi ha els següents:
+El sistema de fitxers d'un sistema operatiu emmagatzema diversitat d'informació sobre els arxius i carpetes que pot resultar útil conèixer: els seus atributs d'accés, la seua grandària, la data de modificació, etc. En general, totes les dades mostrades a accedir a les propietats de l'arxiu. Aquesta informació també pot ser consultada usant els mètodes adequats. Entre els més populars hi ha els següents:
 
 - **long length()** retorna la grandària d'un arxiu en bytes. Aquest mètode només pot ser referenciat sobre una ruta que represente un arxiu, en cas contrari no es pot garantir que el resultat siga vàlid.
 
 - **long lastModified()** retorna l'última data d'edició de l'element representat per aquesta ruta. El resultat es codifica en un únic número enter, el valor del qual és el nombre de mil·lisegons que han passat des de l'1 de gener de 1970.
 
 L'exemple següent mostra com funcionen aquests mètodes. Per a provar-los, crea l'arxiu “Document.txt" en la carpeta "C:\Temp". Primer deixa l'arxiu buit i executa el programa. Després, amb un editor de text, escriu qualsevol cosa, guarda els canvis i torna a executar el programa. Observa com el resultat és diferent. Com a curiositat, fixa't en l'ús de la classe `Date` per a poder mostrar la data en un format llegible.
+
+:::: tabs
+=== Java
+
+::: tabs
+== Codi
 
 ```java
 import java.io.File;
@@ -252,7 +310,7 @@ public class PropietatsFitxer {
 }
 ```
 
-**Primera eixida:**
+== Primera eixida
 
 ```plaintext
 C:/Temp/Document.txt
@@ -261,7 +319,7 @@ C:/Temp/Document.txt
 Grandària de l'arxiu: 0
 ```
 
-**Segona eixida:**
+== Segona eixida
 
 ```plaintext
 C:/Temp/Document.txt
@@ -269,6 +327,9 @@ C:/Temp/Document.txt
 Última modificació (data): Sun Mar 01 02:25:44 CET 2022
 Grandària de l'arxiu: 7
 ```
+
+:::
+::::
 
 ### 2.3.4. Gestió de fitxers
 
@@ -281,6 +342,9 @@ El conjunt d'operacions més habituals en accedir a un sistema de fitxers d'un o
 - **boolean createNewFile()**: Crea un arxiu buit. Java ens obligarà a incloure la instrucció dins d’un context de captura d’excepcions per control intern de Java front a errors crítics.
 
 Per provar l'exemple que es mostra a continuació, primer assegura't que en l'arrel de la unitat "C:" no hi ha cap carpeta anomenada "Temp" i executa el programa. Tot fallarà, ja que les rutes són incorrectes (no existeix "Temp"). Després, crea la carpeta "Temp" i en el seu interior crea un nou document anomenat "Document.txt" (pot estar buit). Executa el programa i veuràs que s'haurà creat una nova carpeta anomenada "Fotos". Si ho tornes a executar per tercera vegada, podràs comprovar que s'haurà esborrat.
+
+::: tabs
+== Java
 
 ```java
 import java.io.File;
@@ -306,6 +370,8 @@ public class GestioFitxers {
 }
 ```
 
+:::
+
 Executant el codi:
 
 1. **Primera execució (sense "Temp")**:  
@@ -323,6 +389,9 @@ Des del punt de vista d'un sistema operatiu, l'operació de "moure" un arxiu o c
 
 Una vegada més, vegem un exemple. Dins de la carpeta "C:/Temp", crea una carpeta anomenada "Mitjana" i una altra anomenada "Fotos". Dins de la carpeta "Fotos", crea dos documents anomenats "Document.txt" i "Fotos.txt". Després d'executar el programa, observa com la carpeta "Fotos" s'ha mogut i ha canviat de nom, però manté en el seu interior l'arxiu "Fotos.txt". L'arxiu "Document.txt" s'ha mogut fins a la carpeta "Temp".
 
+::: tabs
+== Java
+
 ```java
 public static void main(String[] args) {
     File origenDir = new File("C:/Temp/Fotos");
@@ -337,6 +406,8 @@ public static void main(String[] args) {
 }
 ```
 
+:::
+
 Com ja s'ha comentat, aquest mètode també serveix, implícitament, per a canviar de nom arxius o carpetes. Si l'element final de les rutes origen i destinació són diferents, el nom de l'element, sigui arxiu o carpeta, canviarà. Per a simplement canviar de nom un element sense moure'l de lloc, simplement la seva ruta pare seguirà sent exactament la mateixa. El resultat és que l'element de la ruta origen "es mou" en la mateixa carpeta on està ara, però amb un nom diferent.
 
 Per exemple, si utilitzem "C:/Treballs/Doc.txt" com a ruta origen i "C:/Treballs/File.txt" com a ruta destí, l'arxiu “Doc.txt” canviarà de nom a “File.txt” però romandrà en la mateixa carpeta “C:/Treballs”.
@@ -348,6 +419,9 @@ Finalment, només en el cas de les carpetes, és possible consultar quin és el 
 - **File[] listFiles()**: Retorna un vector de tipus File (File[]) amb tots els elements continguts en la carpeta (representats per objectes File, un per element). Perquè s'executi correctament, la ruta ha d'indicar una carpeta. La grandària del vector serà igual al nombre d'elements que conté la carpeta. Si la grandària és 0, el valor retornat serà **null** i tota operació posterior sobre el vector serà errònia. L'ordre dels elements és aleatori (a diferència de l'explorador d'arxius del sistema operatiu, no s'ordena automàticament per tipus ni alfabèticament).
 
 Vegem un exemple. Abans d'executar-lo, crea una carpeta "Temp" en l'arrel de la unitat "C:". Dins crea o copia qualsevol quantitat de carpetes o arxius.
+
+::: tabs
+== Java
 
 ```java
 public static void main(String[] args) {
@@ -365,3 +439,5 @@ public static void main(String[] args) {
     }
 }
 ```
+
+:::

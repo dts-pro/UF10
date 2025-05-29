@@ -4,6 +4,9 @@
 
 Obtindre informació sobre la ruta.
 
+::: tabs
+== Java
+
 ```java
 package UF10_Exemple01;
 import java.io.File;
@@ -36,9 +39,14 @@ public class UF10_Exemple01 {
 } 
 ```
 
+:::
+
 ## Exemple 2
 
 Obtindre informació sobre l'estat.
+
+::: tabs
+== Java
 
 ```java
 package UF10_Exemple02;
@@ -68,9 +76,14 @@ public class UF10_Exemple02 {
 }
 ```
 
+:::
+
 ## Exemple 3
 
 Obtindre informació sobre l'estat.
+
+::: tabs
+== Java
 
 ```java
 package UF10_Exemple03;
@@ -95,9 +108,14 @@ public class UF10_Exemple03 {
 }
 ```
 
+:::
+
 ## Exemple 4
 
 Creació i eliminació de carpetes i arxius.
+
+::: tabs
+== Java
 
 ```java
 package UF10_Exemple04;
@@ -147,9 +165,14 @@ public class UF10_Exemple04 {
 }
 ```
 
+:::
+
 ## Exemple 5
 
 Creació i eliminació de carpetes i arxius.
+
+::: tabs
+== Java
 
 ```java
 package UF10_Exemple05;
@@ -205,9 +228,14 @@ public class UF10_Exemple05 {
 }
 ```
 
+:::
+
 ## Exemple 6
 
 Llistat de carpetes i arxius continguts en una carpeta.
+
+::: tabs
+== Java
 
 ```java
 package UF10_Exemple06;
@@ -300,11 +328,16 @@ public class UF10_Exemple06 {
 }
 ```
 
+:::
+
 ## Exemple 7
 
 Llegir valors enters d'un arxiu anomenat "Enters.txt".
 
 Es provocarà diversos errors: arxiu no existeix, arxiu amb dades no numèriques, llegir desprès d'haver arribat al EOF, llig després de tancar l'arxiu.
+
+::: tabs
+== Java
 
 ```java
 package UF10_Exemple07;
@@ -349,6 +382,8 @@ public class UF10_Exemple07 {
 }
 ```
 
+:::
+
 ## Exemple 8
 
 S'escriuen 20 valors enters , començant per l'1 i cada vegada el doble de l'anterior.
@@ -357,6 +392,9 @@ S'escriuen 20 valors enters , començant per l'1 i cada vegada el doble de l'ant
 - Si existeix el sobreescriu.
 
 Després obrim de nou l'arxiu i afegim dades, en aquest el creem de forma que no sobreescriga el que ja hi havia.
+
+::: tabs
+== Java
 
 ```java
 package UF10_Exemple08;
@@ -417,3 +455,5 @@ public class UF10_Exemple08 {
     }
 }
 ```
+
+:::
