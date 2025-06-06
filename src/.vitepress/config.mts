@@ -21,6 +21,7 @@ export default withMermaid({
     class: "mermaid my-class", // set additional css classes for parent container 
   },
   head: [
+    ['link', { rel: 'icon', href: 'img/logo.png' }],
     //['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     //['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     //['link', { href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap', rel: 'stylesheet' }],
