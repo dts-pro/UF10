@@ -1,4 +1,4 @@
-# UF01. Fonaments de Programació1
+# UF10. Fitxers
 
 ::: tip Informació del curs
 **Professors:** Guillermo Garrido Portes / David Tur Sanmateu
